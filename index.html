@@ -303,32 +303,35 @@
           <p>Takes less than 5 minutes to complete</p>
         </div>
         <div class="apply-card-body">
-          <div class="apply-field"><label>Full Name *</label><input type="text" id="name" placeholder="Your full name"></div>
-          <div class="apply-field"><label>Email Address *</label><input type="email" id="email" placeholder="you@email.com"></div>
-          <div class="apply-field"><label>Phone Number *</label><input type="tel" id="phone" placeholder="(555) 000-0000"></div>
-          <div class="apply-field">
-            <label>Years of Customer Support Experience *</label>
-            <select id="experience">
-              <option value="">Select experience level</option>
-              <option value="1">1 year</option>
-              <option value="2">2–3 years</option>
-              <option value="4">4–5 years</option>
-              <option value="6">6+ years</option>
-            </select>
-          </div>
-          <div class="apply-field">
-            <label>Spanish Proficiency *</label>
-            <select id="spanish">
-              <option value="">Select proficiency level</option>
-              <option value="basic">Basic</option>
-              <option value="conversational">Conversational</option>
-              <option value="fluent">Fluent</option>
-              <option value="native">Native Speaker</option>
-            </select>
-          </div>
-          <div class="apply-field"><label>Tell us about yourself (optional)</label><textarea id="message" placeholder="Brief background, relevant experience, why you want to join VIS..."></textarea></div>
-          <button class="apply-submit" onclick="submitApplication()">Submit Application →</button>
-          <div class="success-msg" id="success-msg">✅ Application received! We'll be in touch within 2–3 business days.</div>
+          <form name="vis-applications" method="POST" data-netlify="true" netlify-honeypot="bot-field" action="/success.html">
+            <input type="hidden" name="form-name" value="vis-applications">
+            <p style="display:none;"><label>Don't fill this out: <input name="bot-field"></label></p>
+            <div class="apply-field"><label>Full Name *</label><input type="text" name="name" required placeholder="Your full name"></div>
+            <div class="apply-field"><label>Email Address *</label><input type="email" name="email" required placeholder="you@email.com"></div>
+            <div class="apply-field"><label>Phone Number *</label><input type="tel" name="phone" required placeholder="(555) 000-0000"></div>
+            <div class="apply-field">
+              <label>Years of Customer Support Experience *</label>
+              <select name="experience" required>
+                <option value="">Select experience level</option>
+                <option value="1 year">1 year</option>
+                <option value="2-3 years">2–3 years</option>
+                <option value="4-5 years">4–5 years</option>
+                <option value="6+ years">6+ years</option>
+              </select>
+            </div>
+            <div class="apply-field">
+              <label>Spanish Proficiency *</label>
+              <select name="spanish_proficiency" required>
+                <option value="">Select proficiency level</option>
+                <option value="Basic">Basic</option>
+                <option value="Conversational">Conversational</option>
+                <option value="Fluent">Fluent</option>
+                <option value="Native Speaker">Native Speaker</option>
+              </select>
+            </div>
+            <div class="apply-field"><label>Tell us about yourself (optional)</label><textarea name="message" placeholder="Brief background, relevant experience, why you want to join VIS..."></textarea></div>
+            <button type="submit" class="apply-submit">Submit Application →</button>
+          </form>
           <p class="apply-note">By applying, you agree to VIS's contractor terms. Background check required ($35 fee).</p>
         </div>
       </div>
@@ -354,7 +357,7 @@
       <div class="info-card">
         <h4><span class="icon-circle">💬</span> Questions?</h4>
         <ul>
-          <li>careers@vitharbor.com</li>
+          <li><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="563537243333242516203f223e37243439247835393b">[email&#160;protected]</a></li>
           <li>Response within 1–2 business days</li>
         </ul>
       </div>
@@ -374,7 +377,7 @@
     <p>© 2026 Vitharbor Integrated Solutions (VIS). All rights reserved. Independent Contractor positions are not employment.</p>
   </footer>
 
-  <script>
+  <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
     function submitApplication() {
       const name = document.getElementById('name').value.trim();
       const email = document.getElementById('email').value.trim();
@@ -406,12 +409,4 @@
         }
       });
     }, { threshold: 0.1 });
-    document.querySelectorAll('.section, .info-card').forEach(el => {
-      el.style.opacity = '0';
-      el.style.transform = 'translateY(20px)';
-      el.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
-      observer.observe(el);
-    });
-  </script>
-</body>
-</html>
+    document.querySelectorAll('.section, .info-ca
